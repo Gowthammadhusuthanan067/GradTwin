@@ -10,6 +10,12 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+	<script type="module" >
+    import ServiceNowChat from "https://dev121520.service-now.com/uxasset/externals/now-requestor-chat-popover-app/index.jsdbx?sysparm_substitute=false";
+    var chat = new ServiceNowChat({ instance: "https://dev121520.service-now.com/", });
+    
+   </script>
 	<script>
 		$(window).on('scroll', function(){
   			if($(window).scrollTop()){

@@ -10,7 +10,25 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-        
+        <iframe id="sn_va_web_client"
+    title="ServiceNow Virtual Agent Client"
+    width="600"
+    height="900"
+    src="https://dev121520.service-now.com/sn_va_web_client_app_embed.do?sysparm_skip_load_history=true&sysparm_branding_key=myeden"
+	    </iframe>
+		
+		<script>
+    window.addEventListener("message", function(e) {
+       // redirect to SSO login if the web client logs in but is logged in as a guest user(unauthenticated)
+      if(e.data.type==="SESSION_CREATED" && e.data.authenticated === false)
+        window.location.href = "https://dev121520.service-now.com/sn_va_web_client_login.do?sysparm_redirect_uri="+ encodeURIComponent(location.href);
+      
+      // redirect to SSO login if the ServiceNow platform logs out from underneath the web client
+      if(e.data.type==="SESSION_LOGGED_OUT")
+        window.location.href = "https://dev121520.service-now.com/sn_va_web_client_login.do?sysparm_redirect_uri=" + encodeURIComponent(location.href);
+    });
+  </script>
+
 	<script type="module" >
     import ServiceNowChat from "https://dev121520.service-now.com/uxasset/externals/now-requestor-chat-popover-app/index.jsdbx?sysparm_substitute=false&sysparm_branding_key=myeden";
     var chat = new ServiceNowChat({ instance: "https://dev121520.service-now.com/", 
